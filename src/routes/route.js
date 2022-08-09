@@ -90,12 +90,12 @@ router.get('/films/:filmId', function(req,res){
        }]
        let requestParams = req.params.filmId
        for(let i=0;i<movie.length;i++){
-        if(requestParams==movie[i+1].id){
-            res.send(movie[i+1].name)
-        }else{
-            res.send("No movie exists with this id")   
+        let shows = movie[i]
+        if(requestParams==shows.id){
+            return res.send(shows.name)
         }
        }
+       res.send("doesn't exist")
 } )
 
 
