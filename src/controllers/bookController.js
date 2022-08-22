@@ -52,14 +52,15 @@ const getBookWithAuthPub = async function(req,res){
 
 
 const updatePub = async function(req,res){
-    let pubId = await publisherModel.find({name:"Penguin"},{name:"HarperCollins"}).select({_id:1})
+    let pubId = await publisherModel.find({name:["Penguine","HarperCollins"]}).select({_id:1})
+    // console.log(pubId)
     let updateBook = await bookModel.updateMany({publisher:pubId},{$set:{isHardCover:true}},{new:true})
     res.send({msg:updateBook})
 }
 
 const updateprice = async function(req,res){
     let authorId = await authorModel.find({ratings:{$gt:3.5}}).select({_id:1})
-    let bookpriceUpdt = await bookModel.updateMany({author:authorId},{$set:{$inc:{price:10}}})
+    let bookpriceUpdt = await bookModel.updateMany({author:authorId},{$inc:{price:+10}},{new:true})
     res.send({msg:bookpriceUpdt})
 }
 
