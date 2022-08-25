@@ -24,3 +24,13 @@ module.exports.mid1= mid1
 module.exports.mid2= mid2
 module.exports.mid3= mid3
 module.exports.mid4= mid4
+
+const midUser = function(req,res,next){
+    const data = req.headers.isFreeAppUser
+    if(!data){
+        res.send({msg:"request is missing a mandatory header"})
+    }
+    next()
+}
+
+module.exports.midUser = midUser
