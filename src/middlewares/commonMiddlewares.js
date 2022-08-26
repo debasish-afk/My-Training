@@ -26,10 +26,11 @@ module.exports.mid3= mid3
 module.exports.mid4= mid4
 
 const midUser = function(req,res,next){
-    const data = req.headers.isFreeAppUser
+    const data = req.headers.isfreeappuser
     if(!data){
         res.send({msg:"request is missing a mandatory header"})
     }
+    req.body["isFreeAppUser"] = data
     next()
 }
 
