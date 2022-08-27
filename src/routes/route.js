@@ -62,7 +62,7 @@ router.post("/createProduct",productController.createProduct)
 
 router.post("/createUser2",commonMW.midUser, UserController.createUser2)
 
-
+router.post("/createOrder",commonMW.midUser, orderController.createOrder)
 
 
 module.exports = router;
