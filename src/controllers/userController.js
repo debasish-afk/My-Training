@@ -107,10 +107,13 @@ const createUsers = async function(req,res){
 
 // login a user
 
-const loginUsers = async function (req,res){
+const loginUsers = async function (req,res){  console.log("from line 110")
   let userName = req.body.emailId
   let password = req.body.password
-  let user = await userModel.find({emailId:userName , password: password})
+  let doc = await userModel.find({emailId:userName , password: password}).lean();
+  console.log(doc, {...doc});
+  console.log(doc["_id"]);
+  console.log("testttttttttttttttttttttt",user, user._doc._id, user["_id"], user._id)
   if(!user)
    return res.send({
     status:false,
@@ -119,7 +122,7 @@ const loginUsers = async function (req,res){
 
    let token = jwt.sign(
     {
-      userId: "debasish",
+      userId: user._id.toString(),
       batch:"plutonium",
       organisation:"functionUp"
     },
